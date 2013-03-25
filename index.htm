@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>Are Your Backlinks Indexed Yet?</title>
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	//if submit button is clicked
+	$('#submit').click(function () {		
+	
+	
+	//alert('here');
+	var email = $('input[name=email]');
+    var thetext = encodeURIComponent($('textarea#url').val() );
+    
+   // alert(thetext);
+
+	var data = 'url=' +  thetext + '&email=' + email.val();
+		
+		
+	
+		
+		//disabled all the text fields
+				
+		//start the ajax
+		$.ajax({
+			//this is the php file that processes the data and send mail
+			url: "check_url.php",	
+			
+			//GET method is used
+			type: "POST",
+
+			//pass the data			
+			data: data,		
+			
+			//Do not cache the page
+			cache: false,
+			
+			//success
+			success: function (html) {				
+			// alert(html);
+			}		
+		});
+		
+		$("textarea#url").val('');
+		var $messageDiv = $('#message'); // get the reference of the div
+$messageDiv.show().html('You can close your window at any time or submit another batch')
+
+		
+		//cancel the submit button default behaviours
+		return false;
+	});	
+});	
+
+
+function isValidEmailAddress(emailAddress) {
+var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+return pattern.test(emailAddress);
+};
+
+
+</script>
+
+</head>
+
+<body>
+<div class="logo">
+
+<center><img src="image001.jpg" alt=""/></center>
+</div>
+<form name="myform" action="" method="POST">
+
+
+<div align="center">
+Enter Email <br><br>
+<input type="text" name = "email" size="100" value="">
+<br><br>
+Enter URLS and click submit<br><br>
+<textarea cols="150" rows="25" name="url" id="url"></textarea>
+<br><br>
+<input type="submit" id="submit" value="Submit" />
+
+</div>
+<br/>
+<center>
+<div id = "message" style = "padding-left:250px"> </div>
+</center>
+ 
+</form>
+</body>
+</html>

@@ -14,3 +14,4 @@ echo "<td>" .$bs->getBlogResults($keyword->text) . "</td>";
 echo "<td> " .$bs->getTwitterResults($keyword->text) ."</td>";  
 echo "<td>"  .$bs->getFacebookResults($keyword->text) ."</td>";
   
+Depreated I think blekko no longer offers free version

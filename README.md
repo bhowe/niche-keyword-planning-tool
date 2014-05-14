@@ -3,10 +3,14 @@ backlinkpatrol
 
 SImple top; to see if your links are indexed.
 
-It works fine with 30/50 URLs at a time. I wouldnt run on your money server.
+blekkoseach api
+=============
 
-Several issues
+Script to poll blekko search api. Need to plugin your own API KEY
 
-1. Needs to handle when google throws a captcha up.
-
-2. Could easily add proxies.
+Usage
+$bs = new BlekkoSearch();
+echo "<td>" .$bs->getBlogResults($keyword->text) . "</td>";
+echo "<td> " .$bs->getTwitterResults($keyword->text) ."</td>";  
+echo "<td>"  .$bs->getFacebookResults($keyword->text) ."</td>";
+  

@@ -1,0 +1,33 @@
+## OS and Utility Stuff ##
+ 
+#==================#
+#     OS Files     #
+#==================#
+ .DS_Store
+ .DS_Store?
+ ._*
+ .Spotlight-V100
+ .Trashes
+ ehthumbs.db
+ *[Tt]humbs.db
+ *.Trashes
+  
+   
+#==================#
+#    Log files     #
+#==================#
+   *.log
+   error_log
+   access_log
+   .sass-cache
+    
+#==================#
+#    Packages      #
+#==================#
+    *.7z
+    *.dmg
+    *.gz
+    *.iso
+    *.rar
+    *.tar
+    *.zip

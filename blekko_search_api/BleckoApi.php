@@ -1,11 +1,18 @@
 <?
 
 
-
-/**
- * Wrapper class around the Blecko API
+/*
+ *  Wrapper  class around the Blecko API
  *  Need blogs, facebook, and twitter
- */
+ * T his is probablylong shut down
+ver: 1.0.0 
+
+settings:
+	Plugin API key and various urls 
+Blake B. Howe
+http://blakebbhowe.com
+*/
+
 class BlekkoSearch {
 	/**
 	 * Json only because its easy
@@ -38,13 +45,8 @@ class BlekkoSearch {
 		curl_setopt($ch, CURLOPT_REFERER, 'www.psssoftware.net');
 		$body = curl_exec($ch);
 		curl_close($ch);
-		
 		// now, process the JSON string
 		$json = json_decode($body);
-		// now have some fun with the results...
-		
-		//var_dump($json);
-		
 		return $json;	
 		
 	}
@@ -55,18 +57,12 @@ class BlekkoSearch {
 function getBlogResults($query)
 {
 
-$q = str_replace(' ','+',$query);
-
-$q = '"' . $q . '"';
-
-	
-	 $url = 'http://blekko.com/ws/?q='.$q .'+/json+/blogs&auth=' . $apikey;
-	 
-	// echo $url . "</br>";
-	 
-     $blogurl = '<a href = "http://blekko.com/ws/?q='.$q .'+/blogs">Blog Results</a>';
-     $json = $this->process($url);
-     sleep(1);
+	$q = str_replace(' ','+',$query);
+	$q = '"' . $q . '"';
+	$url = 'http://blekko.com/ws/?q='.$q .'+/json+/blogs&auth=' . $apikey;
+    $blogurl = '<a href = "http://blekko.com/ws/?q='.$q .'+/blogs">Blog Results</a>';
+    $json = $this->process($url);
+    sleep(1);
 	return $json->universal_total_results;
 
 }
@@ -81,7 +77,7 @@ function getTwitterResults($query)
      $blogurl = '<a href = "http://blekko.com/ws/?q='.$q .'+/twitter.com">Twitter Results</a>';
      $json = $this->process($url);
      sleep(1);
-	return $json->universal_total_results;
+	 return $json->universal_total_results;
 
 
 
@@ -91,7 +87,7 @@ function getTwitterResults($query)
 function getFacebookResults($query)
 {
 
-      $q = str_replace(' ','+',$query);
+     $q = str_replace(' ','+',$query);
      $q = '"' . $q . '"';
 	 $url = 'http://blekko.com/ws/?q='.$q .'+/json+/facebook.com&auth=' . $apikey;
      $blogurl = '<a href = "http://blekko.com/ws/?q='.$q .'+/facebook.com">Facebook</a>';

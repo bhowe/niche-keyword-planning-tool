@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * Contacts enom API checks to see if a domain is registered or not.
+ver: 1.0.0 
+
+settings:
+	 Plugin your username and password for enom
+ 
+Blake B. Howe
+http://blakebbhowe.com
+*/
+
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 

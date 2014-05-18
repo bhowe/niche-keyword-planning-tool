@@ -1,16 +1,24 @@
 <?
 
-
-/**
+/*
  * Wrapper class around the Patent API
  *  http://code.google.com/apis/patentsearch/v1/
- */
+ver: 1.0.0 
+
+settings:
+	 Plugin your url, your email, and put on a cron to run once a day
+ 
+Blake B. Howe
+http://blakebbhowe.com
+*/
+
 class PatentSearch {
 	/**
 	 * Json only because its easy
 	 * @var string
 	 */
 	var $type = 'json';
+	var $key = '*************************************';
 	
 
 	/**
@@ -137,24 +145,23 @@ echo '<div class="pagination">';
 
 
 //unless its 0 you can always have previous link
-if ($start != 0)
-{
-
-$index =  $start - 8;
-
-$request = "?page=" . $index . "&input=" . trim($this->query);
-echo '<a  href="' .$request. '"><strong> Previous Page</strong></a>';
-echo '&nbsp;&nbsp;';
-}
-
-//next link
-
-$index =  $start + 8;
-$request = "?page=" . $index . "&input=" . trim($this->query);
-
-echo '<a  href="' .$request. '"><strong> Next Page</strong></a>';
-echo '&nbsp;&nbsp;';
-echo '<br><br></div>';
+if ($start != 0){
+	
+	$index =  $start - 8;
+	
+	$request = "?page=" . $index . "&input=" . trim($this->query);
+	echo '<a  href="' .$request. '"><strong> Previous Page</strong></a>';
+	echo '&nbsp;&nbsp;';
+	}
+	
+	//next link
+	
+	$index =  $start + 8;
+	$request = "?page=" . $index . "&input=" . trim($this->query);
+	
+	echo '<a  href="' .$request. '"><strong> Next Page</strong></a>';
+	echo '&nbsp;&nbsp;';
+	echo '<br><br></div>';
 			
 }
 		
@@ -190,12 +197,12 @@ function writeSearchResults()
 	    
 		
 		
-//if there are no results display no link
-$xml = $this->jsonobject;
-$d = get_object_vars($xml->responseData->cursor);
-$num = $d['estimatedResultCount'];
-if (empty($num)) return;
-		
+		//if there are no results display no link
+		$xml = $this->jsonobject;
+		$d = get_object_vars($xml->responseData->cursor);
+		$num = $d['estimatedResultCount'];
+		if (empty($num)) return;
+				
 		
 		// echo "About "  . $d['estimatedResultCount'] . " results";
 		// echo "<br><br>";
@@ -251,7 +258,6 @@ function buildQuery($start)
 {
 
 
-
 	
 	    $ip= $_SERVER['REMOTE_ADDR'];
 		
@@ -259,11 +265,11 @@ function buildQuery($start)
 		
 		if (empty($start))
 		{
-		$request .= 'v=1.0&rsz=8&start='. '0'  .'&q=' . urlencode($this->query) . '&key=ABQIAAAAEEcz-xesS1eCnASQYYTQLRTD4--lycajmzoxP3Fsk2YjwJg97xQqW9QYSLNj1uIDtOm9o0EjDqbAlA&userip=' . $ip;;
+		$request .= 'v=1.0&rsz=8&start='. '0'  .'&q=' . urlencode($this->query) . '&key=$key&userip=' . $ip;;
 		}
 		else
 		{
-		$request .= 'v=1.0&rsz=8&start='. $start  .'&q=' . urlencode($this->query) . '&key=ABQIAAAAEEcz-xesS1eCnASQYYTQLRTD4--lycajmzoxP3Fsk2YjwJg97xQqW9QYSLNj1uIDtOm9o0EjDqbAlA&userip=' . $ip;;
+		$request .= 'v=1.0&rsz=8&start='. $start  .'&q=' . urlencode($this->query) . '&key=$key&userip=' . $ip;;
 		
 		}
 

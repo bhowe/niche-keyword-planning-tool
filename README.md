@@ -34,7 +34,4 @@ Todo:
 
 Create a script that uses patent search, enom, twitter, facebook stats , adword data (keyword planning) to find good domains,
 
-Could possibly scrape google suggest, or ubersuggest
-
-Here we go the answer
-http://scrape-google-suggest.compunect.com/
+What kind of intelligence do I use?

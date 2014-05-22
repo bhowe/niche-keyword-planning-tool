@@ -18,7 +18,7 @@ class PatentSearch {
 	 * @var string
 	 */
 	var $type = 'json';
-	var $key = '*************************************';
+	var $key = '';
 	
 
 	/**
@@ -40,9 +40,15 @@ class PatentSearch {
 	/**
 	* @param string $query optional
 	*/
-	function PatentSearch($query=false) {
-	
-	
+	function PatentSearch($query=false,$key) {
+	     if(empty($key)){
+            throw new Exception('api can\'t be empty');
+        }
+        f(empty($query)){
+            throw new Exception('query can\'t be empty');
+        }
+
+	    $this->api_key = $key;
 		$this->query = $query;
 	}
 	

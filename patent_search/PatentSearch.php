@@ -26,6 +26,8 @@ class PatentSearch {
 	 */
 	var $query='';
 	
+	var $start= '';
+	
 	/**
 	 * @var array
 	 */
@@ -40,7 +42,7 @@ class PatentSearch {
 	/**
 	* @param string $query optional
 	*/
-	function PatentSearch($query=false,$key) {
+	function PatentSearch($query=false,$key,$start) {
 	     if(empty($key)){
             throw new Exception('api can\'t be empty');
         }
@@ -50,6 +52,7 @@ class PatentSearch {
 
 	    $this->api_key = $key;
 		$this->query = $query;
+		$this->start = $start;
 	}
 	
 	
@@ -63,10 +66,10 @@ class PatentSearch {
 	*/
 	
 	
-	function get_data($query) {
+	function get_data() {
 	
 	
-  	
+  	    $query =  $this->query;
 		$request = $this->buildQuery($query);
 
 		$this->jsonobject=  $this-> objectify($this->process($request));
@@ -191,7 +194,7 @@ function writeSearchResults()
 		
 		
 		$xml = $this->jsonobject;
-		
+		$output = '';
 	
 		
 		$d = get_object_vars($xml->responseData->cursor);
@@ -209,11 +212,7 @@ function writeSearchResults()
 		$num = $d['estimatedResultCount'];
 		if (empty($num)) return;
 				
-		
-		// echo "About "  . $d['estimatedResultCount'] . " results";
-		// echo "<br><br>";
-		  
-
+				
 		foreach ($xml->responseData as $key)
 		{
 				
@@ -255,34 +254,24 @@ function writeSearchResults()
 
 function closeQuery()
 {
-$pageindex = 1;
+	$pageindex = 1;
 
 }	
 
 	
-function buildQuery($start)
-{
+function buildQuery(){
 
-global $api_key;
-global $query;
-	
-	    $ip= $_SERVER['REMOTE_ADDR'];
+	$ip= $_SERVER['REMOTE_ADDR'];
 		
-		$request  = 'https://ajax.googleapis.com/ajax/services/search/patent?';
+	$request  = 'https://ajax.googleapis.com/ajax/services/search/patent?';
 		
-		if (empty($start))
-		{
+	if (empty($start)){
 		$request .= 'v=1.0&rsz=8&start='. '0'  .'&q=' . urlencode($this->query) . '&key='. $this->api_key . '&userip=' . $ip;;
-		}
-		else
-		{
-		$request .= 'v=1.0&rsz=8&start='. $start  .'&q=' . urlencode($this->query) . '&key='.$this->api_key .'&userip=' . $ip;;
-		
-		}
-
-       echo $request;
-		
-		return $request;
+	}
+	else{
+		$request .= 'v=1.0&rsz=8&start='. $this-start  .'&q=' . urlencode($this->query) . '&key='.$this->api_key .'&userip=' . $ip;;
+	}
+	return $request;
 	
 }
 	

@@ -12,7 +12,7 @@ error_reporting(E_ALL);
 require_once('patent_search/PatentSearch.php');
 
 $query = "King kong";
-$api_key = "PLUG IN YOUR KEY HERE";
+$api_key = "PLUGIN IN KEY";
 //of course this email should trigger it  
 $psearch= new PatentSearch($query, $api_key);
 $data =$psearch->get_data();

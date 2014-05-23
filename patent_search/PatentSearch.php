@@ -18,7 +18,7 @@ class PatentSearch {
 	 * @var string
 	 */
 	var $type = 'json';
-	var $key = '';
+	var $api_key = '';
 	
 
 	/**
@@ -44,7 +44,7 @@ class PatentSearch {
 	     if(empty($key)){
             throw new Exception('api can\'t be empty');
         }
-        f(empty($query)){
+        if(empty($query)){
             throw new Exception('query can\'t be empty');
         }
 
@@ -63,11 +63,11 @@ class PatentSearch {
 	*/
 	
 	
-	function results($start) {
+	function get_data($query) {
 	
 	
   	
-		$request = $this->buildQuery($start);
+		$request = $this->buildQuery($query);
 
 		$this->jsonobject=  $this-> objectify($this->process($request));
 		
@@ -263,7 +263,8 @@ $pageindex = 1;
 function buildQuery($start)
 {
 
-
+global $api_key;
+global $query;
 	
 	    $ip= $_SERVER['REMOTE_ADDR'];
 		
@@ -271,14 +272,15 @@ function buildQuery($start)
 		
 		if (empty($start))
 		{
-		$request .= 'v=1.0&rsz=8&start='. '0'  .'&q=' . urlencode($this->query) . '&key=$key&userip=' . $ip;;
+		$request .= 'v=1.0&rsz=8&start='. '0'  .'&q=' . urlencode($this->query) . '&key='. $this->api_key . '&userip=' . $ip;;
 		}
 		else
 		{
-		$request .= 'v=1.0&rsz=8&start='. $start  .'&q=' . urlencode($this->query) . '&key=$key&userip=' . $ip;;
+		$request .= 'v=1.0&rsz=8&start='. $start  .'&q=' . urlencode($this->query) . '&key='.$this->api_key .'&userip=' . $ip;;
 		
 		}
 
+       echo $request;
 		
 		return $request;
 	

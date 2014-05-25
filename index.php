@@ -35,8 +35,6 @@ $starting_result = '1';
 
 //get the number of patents with search term
 
-
-//of course this email should trigger it  
 $psearch= new PatentSearch($query, $google_api_key,$starting_result);
 $data =$psearch->get_data();
 	
@@ -45,12 +43,13 @@ if ($data){
 }
 
 
-
+#plugin your stuff
 // from https://dev.twitter.com/docs/auth/application-only-auth
 $consumer_key = '';
 $consumer_secret = '';
+#get your bearer token easily remember they never expire
+#https://gist.github.com/bhowe/c729c4f7694e9c3d1835
 #https://dev.twitter.com/docs/auth/application-only-auth
-#remember bearer tokens never expire
 $bearer_token = "";
 
 

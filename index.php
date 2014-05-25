@@ -8,6 +8,24 @@ Blake B. Howe
 http://blakebbhowe.com
 */
 
+
+/*
+Get search term from user
+Get the keywords that exist in google suggest (for the term)
+
+for each google suggest get{
+
+  number of patents with search term
+  number of tweets with search term
+  number of facebook mentions with search term
+  Scoring algorithm 
+  Can I  buy the domain? If not store suggestions
+}
+
+List all suggestions with popularity score
+
+*/
+
 error_reporting(E_ALL);
 require_once('patent_search/PatentSearch.php');
 

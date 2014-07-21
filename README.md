@@ -23,7 +23,7 @@ Uses googles  patent search API
 $ps = new PatentSearch("super tech");
 echo "<td>" .$ps->results($start) . "</td>
 
-Handle Emom API
+Handle Enom API
 ===============
 
 Uses enom api to look up if a domain is take.
